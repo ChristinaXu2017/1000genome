@@ -1,0 +1,8 @@
+FROM python:3.9-slim
+
+RUN pip install --no-cache-dir pandas scikit-learn plotly
+
+pip install -U kaleido
+
+# docker build -t 1000genome/pca-python:3.9 .
+# docker push 1000genome/pca-python:3.9

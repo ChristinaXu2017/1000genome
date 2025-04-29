@@ -1,0 +1,52 @@
+/.metadata/
+
+# Nextflow-specific ignores
+
+.nextflow/ 
+.nextflow.log* 
+work/ 
+results/ 
+output/ 
+*.dag.dot 
+*.dag.pdf 
+*.report.html 
+*.timeline.html 
+.trace.txt 
+nf-.tar.gz
+
+# General development ignores
+
+#IDE and editor files
+
+.idea/ 
+.vscode/ 
+*.swp 
+*.swo 
+*~
+
+#Python-related ignores
+
+pycache/ 
+*.py[cod] 
+*.egg-info/ 
+.pytest_cache/ 
+venv/ 
+env/ 
+*.venv/
+
+#Miscellaneous
+
+.DS_Store 
+*.log 
+*.bak 
+*.tmp 
+temp/ 
+tmp/
+
+# Sensitive or local configuration files
+
+.config/ 
+*.secrets 
+*.key 
+*.pem 
+*.env
