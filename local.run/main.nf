@@ -1,12 +1,5 @@
 #!/usr/bin/env nextflow
 
-params.chunk_size = 500
-params.reads = "/Users/xu102/Documents/gitHub/xu.repo.nextflow/1000genome/data/ALL.chr22.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz"
-params.panel = "/Users/xu102/Documents/gitHub/xu.repo.nextflow/1000genome/data/integrated_call_samples_v3.20130502.ALL.panel"
-params.maf_interval = "(0.03, 0.31)" // select all records, hence skip maf selection
-// params.rand_fraction = 0.02
-
-
 include { SPLIT_SAMPLE } from './modules/scripts'
 include { GET_COUNTS } from './modules/scripts'
 include { MERGE_COUNTS } from './modules/scripts'
