@@ -1,11 +1,11 @@
 #!/usr/bin/env nextflow
 
+include { MAF_SELECT } from './modules/scripts/MAF.nf'
+include { RAND_SELECT } from './modules/scripts/MAF.nf'
 include { SPLIT_SAMPLE } from './modules/scripts'
 include { GET_COUNTS } from './modules/scripts'
 include { MERGE_COUNTS } from './modules/scripts'
 include { CREATE_PCA } from './modules/pca'
-include { MAF_SELECT } from './modules/scripts/MAF.nf'
-include { RAND_SELECT } from './modules/scripts/MAF.nf'
 
 workflow {
 
