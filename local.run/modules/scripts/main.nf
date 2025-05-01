@@ -2,7 +2,7 @@
 
 process MERGE_COUNTS {
 
-    publishDir "results/allel_counts", mode: 'copy', overwrite: true
+    publishDir "$params.results/allel_counts", mode: 'copy', overwrite: true
 
     input:
       path fcount
@@ -35,7 +35,7 @@ process GET_COUNTS {
       tuple path(vcf), path(chunk)  // Expect a tuple of [vcf, chunk]
 
     output:
-      path "${chunk.name}.allel_count.csv", emit: chunk
+      path "${chunk.name}.${vcf.name}.allel_count.csv", emit: chunk
 
     script:
     """
@@ -56,7 +56,7 @@ process GET_COUNTS {
             		if (genotypes[i] != "0" && genotypes[i] != "") counter++
         	}
           	print sample "," variant "," counter
-  	  }' >> ${chunk.name}.allel_count.csv
+  	  }' >> ${chunk.name}.${vcf.name}.allel_count.csv
 
       done
     """

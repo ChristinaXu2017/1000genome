@@ -2,7 +2,7 @@
 
 process CREATE_PCA {
 
-    publishDir "results/pca", mode: 'copy', overwrite: true
+    publishDir "$params.results/pca", mode: 'copy', overwrite: true
     memory '6 GB'
 
     input:

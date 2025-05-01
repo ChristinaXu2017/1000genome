@@ -11,16 +11,18 @@ workflow {
 
 
     // Create initial VCF channel 
-    in_vcf = params.maf_interval ? 
+    in_vcfs = params.maf_interval ? 
 	MAF_SELECT(Channel.fromPath(params.reads, checkIfExists: true), params.maf_interval).vcf :
  	Channel.fromPath(params.reads, checkIfExists: true)
 
     if (params.rand_fraction) {
-	in_vcf = RAND_SELECT(in_vcf, params.rand_fraction).vcf 
+	in_vcfs = RAND_SELECT(in_vcfs, params.rand_fraction).vcf 
     }
 
-    samples = SPLIT_SAMPLE(in_vcf, params.chunk_size).chunks
-    chunk_counts = GET_COUNTS(in_vcf.combine(samples.flatten()))
+    // get subsample from one of the input vcf
+    samples = SPLIT_SAMPLE(in_vcfs.first(), params.chunk_size).chunks
+
+    chunk_counts = GET_COUNTS(in_vcfs.combine(samples.flatten()))
     all_counts = MERGE_COUNTS(chunk_counts.collect())
     CREATE_PCA(all_counts.counts, channel.fromPath(params.panel))
 
