@@ -1,10 +1,10 @@
 FROM python:3.9-slim
 
-# Install system dependencies (if needed for kaleido or other packages)
-RUN apt-get update && apt-get install -y libglib2.0-0 libsm6 libxext6  libxrender-dev \
+# Install system dependencies (procps provides ps command for NF to track process)
+RUN apt-get update && apt-get install -y libglib2.0-0 libsm6 libxext6  libxrender-dev procps  \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python packages
+# Install Python packages (if needed for kaleido or other packages)
 RUN pip install --no-cache-dir -U pandas scikit-learn plotly kaleido
 
 # Set working directory (optional)
