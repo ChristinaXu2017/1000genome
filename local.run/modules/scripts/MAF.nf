@@ -55,17 +55,18 @@ process RAND_SELECT {
     container "staphb/bcftools:1.21"
 
     input:
-    path vcf
-    val select_fraction  // e.g., 0.3 for 30% of records to select
+	path vcf
+	// e.g., 0.3 for 30% of records to select
+	val select_fraction  
 
     output:
-    path "rand_${vcf}", emit: vcf
+	path "rand_${vcf}", emit: vcf
 
     script:
     """
-bcftools.bk view ${vcf} | \
-awk -v frac="${select_fraction}" 'BEGIN {srand()} /^#/ {print} !/^#/ {if (rand() < frac) print}' | \
-bcftools.bk view -o rand_${vcf} -Oz
+	bcftools view ${vcf} | \
+	awk -v frac="${select_fraction}" 'BEGIN {srand()} /^#/ {print} !/^#/ {if (rand() < frac) print}' | \
+	bcftools view -o rand_${vcf} -Oz
 
 
     """
