@@ -1,4 +1,3 @@
-ddREADME.md
 
 ## Outputs
 This fold store some outputs from our NF pipeline. 
