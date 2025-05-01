@@ -1,4 +1,5 @@
-
+## Inputs
+ALL.chr22.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz
 ## Outputs
 This fold store some outputs from our NF pipeline with different parameter setting:
 - maf_0.5-rand_0.02.pca_plot.png
