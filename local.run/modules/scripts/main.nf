@@ -39,9 +39,9 @@ process GET_COUNTS {
 
     script:
     """
-
+      output=${chunk.name}.${vcf.name}.allel_count.csv
       # Write CSV header
-      echo "sample,variant,counter" > ${chunk.name}.allel_count.csv
+      echo "sample,variant,counter" > \$output
 	
       samples=(); 
       while IFS= read -r line; do samples+=("\$line"); done < ${chunk}
@@ -56,7 +56,7 @@ process GET_COUNTS {
             		if (genotypes[i] != "0" && genotypes[i] != "") counter++
         	}
           	print sample "," variant "," counter
-  	  }' >> ${chunk.name}.${vcf.name}.allel_count.csv
+  	  }' >> \$output
 
       done
     """
