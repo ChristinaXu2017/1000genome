@@ -5,12 +5,10 @@
 .nextflow/ 
 .nextflow.log* 
 work/ 
-results/ 
-output/ 
 *.dag.dot 
 *.dag.pdf 
 *.report.html 
-*.timeline.html 
+.timeline.html 
 .trace.txt 
 nf-.tar.gz
 
