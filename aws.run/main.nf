@@ -1,22 +1,22 @@
 #!/usr/bin/env nextflow
 
-include { MAF_SELECT } from './modules/scripts/MAF.nf'
-include { RAND_SELECT } from './modules/scripts/MAF.nf'
-include { SPLIT_SAMPLE } from './modules/scripts'
-include { GET_COUNTS } from './modules/scripts'
-include { MERGE_COUNTS } from './modules/scripts'
+include { MAF_SELECT } from './modules/counts/select.nf'
+include { RAND_SELECT } from './modules/counts/select.nf'
+include { SPLIT_SAMPLE } from './modules/counts/count.nf'
+include { GET_COUNTS } from './modules/counts/count.nf'
+include { MERGE_COUNTS } from './modules/counts/count.nf'
 include { CREATE_PCA } from './modules/pca'
 
 workflow {
 
+    in_vcfs = Channel.fromPath(params.reads, checkIfExists: true)
 
-    // Create initial VCF channel 
-    in_vcfs = params.maf_interval ? 
-	MAF_SELECT(Channel.fromPath(params.reads, checkIfExists: true), params.maf_interval).vcf :
- 	Channel.fromPath(params.reads, checkIfExists: true)
-
-    if (params.rand_fraction) {
+    if ( params.rand_fraction ) {
 	in_vcfs = RAND_SELECT(in_vcfs, params.rand_fraction).vcf 
+    }
+
+    if (params.maf_interval) {
+	in_vcfs = MAF_SELECT(in_vcfs, params.maf_interval).vcf 
     }
 
     // get subsample from one of the input vcf
