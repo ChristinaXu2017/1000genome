@@ -109,4 +109,5 @@ start own NF by following [ tutorial Single-sample implementation](https://train
   - build your local image. eg. `docker build -t 1000genome/pca-python:3.9 .`
   - push to dockerhub. eg. `docker tag 1000genome/pca-python:3.9 <your_dockerhub_username>/pca-python:3.9; docker push <your_dockerhub_username>/pca-python:3.9`
 
- 
+### AWS
+- [nextflow docs AWS](https://github.com/nextflow-io/nextflow/blob/master/docs/aws.md)
