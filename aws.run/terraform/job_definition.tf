@@ -27,7 +27,7 @@ module "job_definition_nf"{
    source = "./modules/fargate-job"
    # eg. 123456789012.dkr.ecr.us-west-2.amazonaws.com/${var.project}
    ecr_repo_url = aws_ecr_repository.repo.repository_url
-   docker_file_path = "./modules/nextflow"
+   docker_file_path = "../modules/nextflow"
    image_tag = "nf_header"
 
    # the nextflow head job require "batch:SubmitJob"
