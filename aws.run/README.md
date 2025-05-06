@@ -1,24 +1,23 @@
-## Submitting the Job with AWS CLI
+## method 1: Submitting the Job with AWS CLI
 
 ```
 aws batch submit-job \
     --job-name nextflow-pipeline-job \
     --job-queue <your-job-queue-name> \
     --job-definition <your-job-definition-name> \
-    --container-overrides '{"command": ["/app/run.sh"]}'
+    --container-overrides '{
+        "command": [
+            "/bin/bash", "-c",
+            "aws s3 cp s3://mybucket/scripts /app/scripts/ --recursive && nextflow run /app/scripts/main.nf -profile \"aws,Fargate\" -c /app/scripts/nextflow.config -bucket-dir s3://mybucket/demo/work"
+        ]
+    }'
 ```
 
-example of run.sh
+## method 2: Submit the job with environment variables
 
-```
-#!/bin/bash
-aws s3 cp "${S3_SCRIPTS_PATH:-s3://mybucket/scripts}" /app/scripts/ --recursive
-nextflow run /app/scripts/main.nf -profile "${NF_PROFILE:-aws,Fargate}" -c /app/scripts/nextflow.config -bucket-dir "${NF_BUCKET_DIR:-s3://mybucket/demo/work}"
-
-```
-
-## Submit the job with environment variables
 - update Dockerfile
+<Details>
+
 ```
 FROM python:3.9-slim
 
@@ -55,9 +54,9 @@ ENTRYPOINT ["/app/run.sh"]
 
 ```
 
+</Details>
 
 - submit job
-
 
 ```
 aws batch submit-job \
@@ -73,3 +72,4 @@ aws batch submit-job \
         ]
     }'
 ```
+
