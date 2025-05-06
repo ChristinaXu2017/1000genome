@@ -1,6 +1,7 @@
 ## method 1: Submitting the Job with AWS CLI
 
 ```
+aws s3 cp /path/to/scripts/ s3://mybucket/scripts/ --recursive && \
 aws batch submit-job \
     --job-name nextflow-pipeline-job \
     --job-queue <your-job-queue-name> \
