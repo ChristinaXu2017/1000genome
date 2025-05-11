@@ -1,10 +1,10 @@
 #!/usr/bin/env nextflow
 
-include { MAF_SELECT } from './modules/counts/select.nf'
-include { RAND_SELECT } from './modules/counts/select.nf'
-include { SPLIT_SAMPLE } from './modules/counts/count.nf'
-include { GET_COUNTS } from './modules/counts/count.nf'
-include { MERGE_COUNTS } from './modules/counts/count.nf'
+include { MAF_SELECT } from './modules/bcftool/select.nf'
+include { RAND_SELECT } from './modules/bcftool/select.nf'
+include { SPLIT_SAMPLE } from './modules/bcftool/count.nf'
+include { GET_COUNTS } from './modules/bcftool/count.nf'
+include { MERGE_COUNTS } from './modules/bcftool/count.nf'
 include { CREATE_PCA } from './modules/pca'
 
 workflow {

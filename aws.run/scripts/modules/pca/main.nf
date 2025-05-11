@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 
 process CREATE_PCA {
+    label 'pca'
 
     publishDir "$params.results/pca", mode: 'copy', overwrite: true
     memory '6 GB'

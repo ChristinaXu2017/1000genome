@@ -1,6 +1,7 @@
 #!/usr/bin/env nextflow
 
 process MERGE_COUNTS {
+    label 'bcftool'
 
     publishDir "$params.results/allel_counts", mode: 'copy', overwrite: true
 
@@ -29,6 +30,7 @@ process MERGE_COUNTS {
 }
 
 process GET_COUNTS {
+    label 'bcftool'
 
     input:
       tuple path(vcf), path(chunk)  // Expect a tuple of [vcf, chunk]
@@ -62,6 +64,7 @@ process GET_COUNTS {
 }
 
 process SPLIT_SAMPLE {
+    label 'bcftool'
      
     // one channel of a file; another channel with a value
     input: 
