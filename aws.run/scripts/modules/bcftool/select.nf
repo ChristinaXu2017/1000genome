@@ -2,7 +2,6 @@
 
 process MAF_SELECT {
     label 'bcftool'
-    container = 'job-definition://arn:aws:batch:us-east-1:041314368896:job-definition/fargate-job-bcftool:2'
 
     input:
         path vcf
@@ -54,8 +53,7 @@ process MAF_SELECT {
 
 process RAND_SELECT {
     label 'bcftool'
-    // container = 'job-definition/fargate-job-pca:2'
-    container = 'job-definition://arn:aws:batch:us-east-1:041314368896:job-definition/fargate-job-bcftool:2'
+    //container = 'job-definition://arn:aws:batch:us-east-1:041314368896:job-definition/fargate-job-bcftool:2'
 
     input:
 	    path vcf
