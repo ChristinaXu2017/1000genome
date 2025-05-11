@@ -43,7 +43,7 @@ module "job_definition_pca"{
    ecr_repo_url = aws_ecr_repository.repo.repository_url
    docker_file_path = "../modules/pca"
    image_tag = "pca"
-   vcpu = "8"
+   vcpu = "2"
    ram = "16384"  #16.GB
    
    job_role_arn = aws_iam_role.fargate_job_role.arn
@@ -58,6 +58,9 @@ module "job_definition_bcftool"{
    ecr_repo_url = aws_ecr_repository.repo.repository_url
    docker_file_path = "../modules/bcftool"
    image_tag = "bcftool"
+   vcpu = "1"
+   ram = "2048"  #2.GB
+   
    
    job_role_arn = aws_iam_role.fargate_job_role.arn
    execution_role_arn = aws_iam_role.fargate_execution_role.arn
