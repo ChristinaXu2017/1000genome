@@ -20,7 +20,7 @@ aws batch submit-job \
     --job-name "${job_name}" \
     --job-queue "${job_queue}" \
     --job-definition "${job_definition}" \
-    --container-overrides "{\"command\": [\"/bin/bash\", \"-c\", \"mkdir -p /app/scripts && aws s3 cp s3://${bucket}/scripts /app/scripts/ --recursive && nextflow run /app/scripts/main.nf -profile \\\"awsbatch\\\" -c /app/scripts/nextflow.config -bucket-dir s3://${bucket}/demo/work\"]}"
+    --container-overrides "{\"command\": [\"/bin/bash\", \"-c\", \"mkdir -p /app/scripts && aws s3 cp s3://${bucket}/scripts /app/scripts/ --recursive && nextflow run /app/scripts/main.nf -profile \\\"awsbatch\\\" -c /app/scripts/nextflow.config -bucket-dir s3://${bucket}/1000genomes/work\"]}"
 if [[ $? -ne 0 ]]; then
   echo "Error: Failed to submit AWS Batch job."
   exit 1
