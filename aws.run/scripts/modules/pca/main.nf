@@ -53,9 +53,9 @@ process CREATE_PCA {
 
           # PCA plot
           fig = px.scatter(pca_df, x='PC1', y='PC2', title="PCA", color_discrete_sequence=[clr])
-          fig.update_layout( height=400, width=600,
-                  xaxis=dict(range=[-50, 750], showgrid=False, zeroline=False),
-                  yaxis=dict(range=[-50, 50], showgrid=False, zeroline=False))
+          fig.update_layout(  height=800, width=800,
+              xaxis=dict(range=[-40, 40], showgrid=False, zeroline=False),
+              yaxis=dict(range=[-40, 40], showgrid=False, zeroline=False) )
           fig.write_image("pca_plot.png")
           fig.write_html("pca_plot.html")  
 
