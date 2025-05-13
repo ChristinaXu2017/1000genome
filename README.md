@@ -98,7 +98,7 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 - 
 </Details>
 
-# Let’s Get Started with "1000genome Nextflow pipelien with AWS Fargate "!
+# Let’s Get Started with "1000genome with AWS Fargate "!
 start own NF by following [ tutorial Single-sample implementation](https://training.nextflow.io/latest/nf4_science/rnaseq/02_single-sample/#1-write-a-single-stage-workflow-that-runs-the-initial-qc)
 
 ### container
