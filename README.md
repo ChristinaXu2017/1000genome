@@ -104,9 +104,11 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
   
 ### Command example 
 <Details>
+ 
 - `nextflow run test.nf`
 - `nextflow run test.nf -with-dag flowchart.png`
 - `nextflow run main.nf -profile "awsbatch" -c /app/scripts/nextflow.config -bucket-dir s3://${bucket}/1000genomes/work'
+  
 </Details>
 
 # Let’s Get Started with "1000genome with AWS Fargate "!
