@@ -111,7 +111,7 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 - The Nextflow pipeline in the local.run folder is ready to run on your local PC with Docker installed.
 - The Nextflow pipeline in the aws.run folder is configured to run on AWS Fargate with Terraform deployment.
 
-### container practice
+### Container Practice
 <Details>
 - rm local bcftools: eg. `which bcftools; mv /opt/homebrew/bin/bcftools /opt/homebrew/bin/bcftools.bk`
 - check docker deamon is on: eg. `nextflow run hello -with-docker`
