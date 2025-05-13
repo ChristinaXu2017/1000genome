@@ -97,13 +97,14 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 - some [Groovy and Java](https://www.nextflow.io/docs/latest/reference/stdlib.html#groovy-and-java-classes) classes are already imported by default, Nextflow can call them directly. eg. `params { timestamp = (new Date()).getTime()}` from [youtube example](https://www.youtube.com/watch?v=0EZ1EFknEL8&t=8s)
 - Scripts
 
-### NextFlow Command
+</Details>
+
+### Command example 
+<Details>
 - `nextflow run test.nf`
 - `nextflow run test.nf -with-dag flowchart.png`
 - `nextflow run main.nf -profile "awsbatch" -c /app/scripts/nextflow.config -bucket-dir s3://${bucket}/1000genomes/work'
-
 </Details>
-
 
 # Let’s Get Started with "1000genome with AWS Fargate "!
 start own NF by following [ tutorial Single-sample implementation](https://training.nextflow.io/latest/nf4_science/rnaseq/02_single-sample/#1-write-a-single-stage-workflow-that-runs-the-initial-qc)
