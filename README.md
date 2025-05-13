@@ -107,9 +107,9 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 </Details>
 
 # Let’s Get Started with "1000genome with AWS Fargate "!
-- start own NF by following [ tutorial Single-sample implementation](https://training.nextflow.io/latest/nf4_science/rnaseq/02_single-sample/#1-write-a-single-stage-workflow-that-runs-the-initial-qc)
-- Nextflow scripts under our "local.run" folder is ready to run on your local PC with docker ready
-- Nextflow pipeline under our "aws.run" folder is ready to run on AWS Fargate with terraform deployment
+- Start your own Nextflow pipeline by following the [single-sample implementation tutorial](https://training.nextflow.io/latest/nf4_science/rnaseq/02_single-sample/#1-write-a-single-stage-workflow-that-runs-the-initial-qc).
+- The Nextflow pipeline in the local.run folder is ready to run on your local PC with Docker installed.
+- The Nextflow pipeline in the aws.run folder is configured to run on AWS Fargate with Terraform deployment.
 
 ### container practice
 <Details>
