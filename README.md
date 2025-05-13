@@ -95,7 +95,7 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 - [Configuration](https://training.nextflow.io/latest/hello_nextflow/06_hello_config/): Customize pipeline behavior (e.g., memory, CPUs, or queue settings) in the nextflow.config file.
 - [containers](https://training.nextflow.io/latest/hello_nextflow/05_hello_containers/): There are many container image are ready to call it before create your own one. eg. 
 - some [Groovy and Java](https://www.nextflow.io/docs/latest/reference/stdlib.html#groovy-and-java-classes) classes are already imported by default, Nextflow can call them directly. eg. `params { timestamp = (new Date()).getTime()}` from [youtube example](https://www.youtube.com/watch?v=0EZ1EFknEL8&t=8s)
-- 
+- Scripts
 </Details>
 
 # Let’s Get Started with "1000genome with AWS Fargate "!
