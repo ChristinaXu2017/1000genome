@@ -12,7 +12,7 @@ Nextflow is becoming incredibly popular because it simplifies the development of
 
 ### Complexity  Concerns
 Yes, Nextflow is powerful, with lots of features and plugins! If you've browsed Nextflow code on GitHub, you might have noticed they can look intimidating. This complexity can scare researchers away from adopting Nextflow. <BR>
-But don't worry! Nextflow can be simple when you start with the basics. I've gathered beginner-friendly examples, documentation, and tutorials to help you get started. My mission is to guide you through creating a Nextflow pipeline, running it, and customizing it. Once you're ready, I'll help you deploy it on the cloud for maximum scalability.
+But don't worry! Nextflow becomes simple when you understanding its basic concepts. I've gathered beginner-friendly examples, documentation, and tutorials to help you get started. My mission is to guide you through creating a Nextflow pipeline, running it, and customizing it. Once you're ready, I'll help you deploy it on the cloud for maximum scalability.
 
 
 ### Step by Step On Nextflow Journey
