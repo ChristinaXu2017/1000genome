@@ -104,6 +104,7 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 
 # Let’s Get Started with "1000genome with AWS Fargate "!
 - Start your own Nextflow pipeline by following the [single-sample implementation tutorial](https://training.nextflow.io/latest/nf4_science/rnaseq/02_single-sample/#1-write-a-single-stage-workflow-that-runs-the-initial-qc).
+- [Examine genomic variation across populations with AWS](https://aws.amazon.com/blogs/industries/examine-genomic-variation-across-populations-with-aws/)
 - The Nextflow pipeline in the local.run folder is ready to run on your local PC with Docker installed.
 - The Nextflow pipeline in the aws.run folder is configured to run on AWS Fargate with Terraform deployment.
 
