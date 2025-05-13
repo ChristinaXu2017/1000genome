@@ -7,7 +7,7 @@ Hi everyone! I am a bioinformatics software engineer, and I’m delighted to sha
 ### Why Nextflow?
 Nextflow is becoming incredibly popular because it simplifies the development of bioinformatic pipelines. it replaces messy, hard-to-maintain Bash, Python, or Perl scripts with a structured and scalable framework.  with Nextflow, you can:
 - Write cleaner, more organized pipelines
-- Run your pipelines on your laptop, a cluster, or the cloud with minimal changes
+- Run your pipelines on your laptop, a cluster, or the cloud with minimal conversion
 - Automate complex workflows with ease
 
 ### Complexity  Concerns
