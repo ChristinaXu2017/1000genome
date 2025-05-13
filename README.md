@@ -89,16 +89,19 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 ### Other Concepts
 <Details>
  
-- [Execution Environments](): local, HPC, Cloud, Containers, Conda. Configure the execution environment in the nextflow.config file.
+
 - [Workflows](https://training.nextflow.io/latest/hello_nextflow/03_hello_workflow/): Combine processes into reusable workflows with DSL2 for cleaner, more organized pipelines.
 - [Modules](https://training.nextflow.io/latest/hello_nextflow/04_hello_modules/): Reuse processes across pipelines using Nextflow modules or DSL2, enabling modularity and collaboration.
 - [Configuration](https://training.nextflow.io/latest/hello_nextflow/06_hello_config/): Customize pipeline behavior (e.g., memory, CPUs, or queue settings) in the nextflow.config file.
-- [containers](https://training.nextflow.io/latest/hello_nextflow/05_hello_containers/): There are many container image are ready to call it before create your own one. eg. 
+
 - some [Groovy and Java](https://www.nextflow.io/docs/latest/reference/stdlib.html#groovy-and-java-classes) classes are already imported by default, Nextflow can call them directly. eg. `params { timestamp = (new Date()).getTime()}` from [youtube example](https://www.youtube.com/watch?v=0EZ1EFknEL8&t=8s)
 - Scripts
 
 </Details>
 
+### Compute environment
+- [Execution Environments](): local, HPC, Cloud, Containers, Conda. Configure the execution environment in the nextflow.config file.
+- [containers](https://training.nextflow.io/latest/hello_nextflow/05_hello_containers/): There are many container image are ready to call it before create your own one. eg. "staphb/bcftools:1.21"
 ### Command example 
 <Details>
 - `nextflow run test.nf`
