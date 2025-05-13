@@ -109,13 +109,16 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 # Let’s Get Started with "1000genome with AWS Fargate "!
 start own NF by following [ tutorial Single-sample implementation](https://training.nextflow.io/latest/nf4_science/rnaseq/02_single-sample/#1-write-a-single-stage-workflow-that-runs-the-initial-qc)
 
-### container
+### container practice
+<Details>
 - rm local bcftools: eg. `which bcftools; mv /opt/homebrew/bin/bcftools /opt/homebrew/bin/bcftools.bk`
 - check docker deamon is on: eg. `nextflow run hello -with-docker`
 - set on nextflow.config: `docker.enabled=true` and `runOptions = "--platform linux/amd64"` if on mac
 - for customize Dockerfile, you have to turn on local docker deamon and  login dockerHub, and then build push image to your public/private repo
   - build your local image. eg. `docker build -t 1000genome/pca-python:3.9 .`
   - push to dockerhub. eg. `docker tag 1000genome/pca-python:3.9 <your_dockerhub_username>/pca-python:3.9; docker push <your_dockerhub_username>/pca-python:3.9`
-
-### AWS
-- [nextflow docs AWS](https://github.com/nextflow-io/nextflow/blob/master/docs/aws.md)
+</Details>
+   
+### AWS practice
+- [Nextflow on AWS](https://github.com/nextflow-io/nextflow/blob/master/docs/aws.md)
+- [Nextflow with AWS Fargate](https://seqera.io/blog/seqera-and-aws-fargate/)
