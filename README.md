@@ -82,7 +82,7 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
     ```
     </Details>
 
-  - ??? [some channel examples](https://nextflow-io.github.io/nf-schema/latest/samplesheets/examples/)
+  - [some channel manipulation examples](https://nextflow-io.github.io/nf-schema/latest/samplesheets/examples/)
 
 </Details>
 
