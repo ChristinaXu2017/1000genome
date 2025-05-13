@@ -100,8 +100,11 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 </Details>
 
 ### Compute environment
+<Details>
 - [Execution Environments](): local, HPC, Cloud, Containers, Conda. Configure the execution environment in the nextflow.config file.
 - [containers](https://training.nextflow.io/latest/hello_nextflow/05_hello_containers/): There are many container image are ready to call it before create your own one. eg. "staphb/bcftools:1.21"
+</Details>
+  
 ### Command example 
 <Details>
 - `nextflow run test.nf`
