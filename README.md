@@ -14,18 +14,7 @@ Nextflow is becoming incredibly popular because it simplifies the development of
 Yes, Nextflow is powerful, with lots of features and plugins! If you've browsed Nextflow code on GitHub, you might have noticed they can look intimidating. This complexity can scare researchers away from adopting Nextflow. <BR>
 But don't worry! Nextflow becomes simple when you understanding its basic concepts. I've gathered beginner-friendly examples, documentation, and tutorials to help you get started. My mission is to guide you through creating a Nextflow pipeline, running it, and customizing it. Once you're ready, I'll help you deploy it on the cloud for maximum scalability.
 
-
-### Step by Step On Nextflow Journey
-Let's make this fun and hands-on! Here's how we'll get started:
-- installation: Bash, Java, NextFlow, Docker, Git etc
-- Gather the documents: recommend to use [Full Nextflow Documentation](https://www.nextflow.io/docs/latest/index.html) as dictionary for beginner.
-- Learn the Basics: go through the basic training of [Hello Nextflow](https://training.nextflow.io/latest/hello_nextflow/) to understand the core concepts of Nextflow, like processes, channels, and workflows.
-- Get Hands-On: Write your first Nextflow pipeline to solve a real bioinformatics problem.
-- Scale to the Cloud: Extend your pipeline to run on cloud infrastructure for faster, more robust execution.
-
-By the end, you’ll have a working pipeline and the confidence to build more. I’ll provide the tools and support to make your pipelines cloud-ready.
 </Details>
-
 
 ## NextFlow Core Concepts
 This outline introduces its core concepts - processes and channels, along with other key features to help you get started.
@@ -115,6 +104,19 @@ the relationship for [Processes(tasks) and Channels (joints of tasks)](https://t
 - Start your own Nextflow pipeline by following the [single-sample implementation tutorial](https://training.nextflow.io/latest/nf4_science/rnaseq/02_single-sample/#1-write-a-single-stage-workflow-that-runs-the-initial-qc).
 - The Nextflow pipeline in the local.run folder is ready to run on your local PC with Docker installed.
 - The Nextflow pipeline in the aws.run folder is configured to run on AWS Fargate with Terraform deployment.
+
+### Step by Step On Nextflow Journey
+<Details>
+Let's make this fun and hands-on! Here's how we'll get started:
+ 
+- installation: Bash, Java, NextFlow, Docker, Git etc
+- Gather the documents: recommend to use [Full Nextflow Documentation](https://www.nextflow.io/docs/latest/index.html) as dictionary for beginner.
+- Learn the Basics: go through the basic training of [Hello Nextflow](https://training.nextflow.io/latest/hello_nextflow/) to understand the core concepts of Nextflow, like processes, channels, and workflows.
+- Get Hands-On: Write your first Nextflow pipeline to solve a real bioinformatics problem.
+- Scale to the Cloud: Extend your pipeline to run on cloud infrastructure for faster, more robust execution.
+
+By the end, you’ll have a working pipeline and the confidence to build more. I’ll provide the tools and support to make your pipelines cloud-ready.
+</Details>
 
 ### Container Practice
 <Details>
