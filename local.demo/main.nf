@@ -7,14 +7,6 @@ include { GET_COUNTS } from './modules/bcftool/count.nf'
 include { MERGE_COUNTS } from './modules/bcftool/count.nf'
 include { CREATE_PCA } from './modules/pca'
 
-params.chunk_size = 500
-params.rand_fraction = 0.02
-params.maf_interval = "(0.001, 0.5]"
-params.reads = "/Users/xu102/Documents/gitHub/xu.repo.nextflow/1000genome/data/ALL.*.vcf.gz"
-params.panel = "/Users/xu102/Documents/gitHub/xu.repo.nextflow/1000genome/data/integrated_call_samples_v3.20130502.ALL.panel"
-params.results  = "/Users/xu102/Documents/gitHub/1000genome/local.run/results"
-
-
 workflow {
 
     // Create input channel
