@@ -12,11 +12,11 @@ workflow {
     in_vcfs = Channel.fromPath(params.reads, checkIfExists: true)
 
     if ( params.rand_fraction ) {
-	in_vcfs = RAND_SELECT(in_vcfs, params.rand_fraction).vcf 
+	in_vcfs = RAND_SELECT(in_vcfs, params.rand_fraction).vcfs 
     }
 
     if (params.maf_interval) {
-	in_vcfs = MAF_SELECT(in_vcfs, params.maf_interval).vcf 
+	in_vcfs = MAF_SELECT(in_vcfs.flatten(), params.maf_interval).vcf 
     }
 
     // get subsample from one of the input vcf
@@ -26,6 +26,22 @@ workflow {
     all_counts = MERGE_COUNTS(chunk_counts.collect())
     CREATE_PCA(all_counts.counts, channel.fromPath(params.panel))
 
+}
+
+workflow.onComplete {
+
+    def msg = """\
+        Pipeline execution summary
+        ---------------------------
+        Completed at: ${workflow.complete}
+        Duration    : ${workflow.duration}
+        exit status : ${workflow.exitStatus}
+        Success     : ${workflow.success}
+        Outputs     : ${params.results}
+        """
+        .stripIndent()
+
+    sendMail(to: '${params.emailto}', subject: 'NF run (${params.runid}) is done', body: msg)
 }
 
 
