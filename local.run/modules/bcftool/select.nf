@@ -3,65 +3,59 @@
 
 process RAND_SELECT {
     container "staphb/bcftools:1.21"
-    publishDir "$params.results", mode: 'symlink'
 
     input:
         path vcf
         val select_fraction
 
     output:
-        path "rand_${vcf}", emit: vcf
+        path "rand.*.${vcf}", emit: vcfs
 
     script:
     """
-	#!/bin/bash
+        #!/bin/bash
 
-	num_region=100  # bcftool query 100 region 
-	contig_id=\$( echo ${vcf} | sed -n 's/.*chr\\([0-9]\\{1,\\}\\).*/\\1/p')
-	chr_length=\$(bcftools view -h "${vcf}" | grep "^##contig" | grep "ID=\$contig_id," | awk -F'[= >]' '{print \$5}')
+        contig_id=\$( echo ${vcf} | sed -n 's/.*chr\\([0-9]\\{1,\\}\\).*/\\1/p')
+        chr_length=\$(bcftools view -h "${vcf}" | grep "^##contig" | grep "ID=\$contig_id," | awk -F'[= >]' '{print \$5}')
+        
+        # divid chr to regions with size 9m, here chr22 length is 51m
+        size_region=9000000  # 9m position is 9/52 of chr22 
+        num_region=\$((chr_length / size_region + 1))
+        echo "chr length is \$chr_length; region no is \$num_region"
 
-# per region is chr_length/100; window is 2x5% of region
-# total 10% of whole chr region will be selected
-window=\$((chr_length / num_region * 5 / 100))
+        # total 50% of region will be selected
+        region_percent=0.5
+        window=\$((size_region / 2))
+        echo "chr length is \$chr_length; region no is \$num_region; window=\$window"
 
-# Generate 100 random region using awk
-awk -v seed=\$RANDOM -v n=\$num_region -v len=\$chr_length '
-BEGIN {
-    srand(seed);  # Seed random number generator
-    for (i = 1; i <= n; i++) {
-        pos = int(rand() * len) + 1;  # Random position from 1 to chrom_length
-        print pos;
-    }
-}' | sort -n | uniq > position.txt
+        # Generate 100 random region using awk
+        awk -v seed=\$RANDOM -v n=\$num_region -v len=\$chr_length '
+        BEGIN {
+            srand(seed);  # Seed random number generator
+            for (i = 1; i <= n; i++) {
+                pos = int(rand() * len) + 1;  # Random position from 1 to chrom_length
+                print pos;
+            }
+        }' | sort -n | uniq > position.txt
 
-# Select fraction of variants per window
-# we have to increase 10 times of fraction, due to window is 10% of entire chr
-bcftools index ${vcf}
-while read -r start; do
-    win_start=\$((start - window))
-    win_end=\$((start + window))
-    [ \$win_start -lt 0 ] && win_start=0
+        # create multi output vcfs with selected fraction of variants per window 
+        bcftools index ${vcf}
+        last_end=1
+        while read -r start; do
+            win_start=\$([ \$start -lt \$last_end ] && echo "\$last_end" || echo \$start )
+            win_end=\$(( win_start + window ))
+            last_end=\$(( win_end + 1 ))
+            echo "query \${contig_id}:\${win_start}-\${win_end} ..."
 
-    bcftools view ${vcf} \${contig_id}:\${win_start}-\${win_end} | \
-    awk -v frac="${select_fraction}" 'BEGIN {srand()} /^#/ {print} !/^#/ {if (rand() / 10 < frac) print}' | \
-    bcftools view -o tmp.\${start}.${vcf} -Oz
-   
-    # create index for merge    
-    bcftools index tmp.\${start}.${vcf}
-done < position.txt
-
-input_files=(tmp.*.${vcf})
-if [ \${#input_files[@]} -gt 1 ]; then
-    # merge multi tmp vcfs
-    bcftools merge --force-samples -o rand_${vcf} tmp.*.${vcf}
-else
-    # rename the single vcf to final
-    mv \${input_files} rand_${vcf}
-fi
+            bcftools view ${vcf} \${contig_id}:\${win_start}-\${win_end} | \
+            awk -v frac="${select_fraction}" -v perc="\${region_percent}"  'BEGIN {srand()} /^#/ {print} !/^#/ {if (rand() * perc  < frac) print}' | \
+            bcftools view -o rand.\${start}.${vcf} -Oz
+        
+            # create index for merge    
+            # bcftools index tmp.\${start}.${vcf}
+        done < position.txt
 
     """
-
-
 }
 
 
