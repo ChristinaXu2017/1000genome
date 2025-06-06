@@ -1,75 +1,33 @@
-## method 1: Submitting the Job with AWS CLI
+# Nextflow Pipeline on AWS Fargate
+A Nextflow pipeline is proposed to Examine genomic variation across populations with AWS. Here, both Nextflow head and task jobs are running on AWS Fargate, leveraging Spot instances, and automating infrastructure with Terraform, our approach overcomes the scalability, cost, and speed limitations of prior methods.
 
-```
-aws s3 cp /path/to/scripts/ s3://mybucket/scripts/ --recursive && \
-aws batch submit-job \
-    --job-name nextflow-pipeline-job \
-    --job-queue <your-job-queue-name> \
-    --job-definition <your-job-definition-name> \
-    --container-overrides '{
-        "command": [
-            "/bin/bash", "-c",
-            "aws s3 cp s3://mybucket/scripts /app/scripts/ --recursive && nextflow run /app/scripts/main.nf -profile \"aws,Fargate\" -c /app/scripts/nextflow.config -bucket-dir s3://mybucket/demo/work"
-        ]
-    }'
-```
+## AWS Cloud Infrasture
+The folder named terraform provides the template to set up cloud infrastructure. 
+- step 1: set up AWS cloud credential in your local PC. 
+  ```
+  # eg. less ~/.aws/config 
+  [default]
+    region = us-east-1 
+    output = json
 
-## method 2: Submit the job with environment variables
-
-- update Dockerfile
-    <Details>
+  # eg. less ~/.aws/credentials 
+  [default]
+    aws_access_key_id=ASIAQT...X
+    aws_secret_access_key=1mSq9i0+Vcr...A/u
+    aws_session_token=IQoJ/...=
+  ```
+- step 2: terraform deployment
+  ```
+  cd ./aws.run/terraform
+  terraform init
+  terraform apply
+  ```
+- step 3: now you can get aws resource through AWS console or terraform command. eg.
+  - job_definition arn to launch docker container running PCA and bcftool, refer to "scripts/nextflow.config"
+  - name of your private bucket, job_queue and Nextflow head job_definition, refer to "submit.sh"
     
-    ```
-        FROM python:3.9-slim
-        
-        # Install system dependencies (procps provides ps command for NF to track process)
-        RUN apt-get update && apt-get install -y libglib2.0-0 libsm6 libxext6 libxrender-dev procps curl unzip openjdk-17-jre \
-            && rm -rf /var/lib/apt/lists/*
-        
-        # Install AWS CLI
-        RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-            && unzip awscliv2.zip \
-            && ./aws/install \
-            && rm -rf awscliv2.zip aws
-        
-        # Install Nextflow
-        RUN curl -s https://get.nextflow.io | bash \
-            && mv nextflow /usr/local/bin/ \
-            && chmod +x /usr/local/bin/nextflow
-        
-        # Install Python packages (if needed for kaleido or other packages)
-        RUN pip install --no-cache-dir -U pandas scikit-learn plotly kaleido
-        
-        # Set working directory
-        WORKDIR /app
-        
-        # Create a shell script to handle S3 copy and Nextflow execution
-        RUN echo '#!/bin/bash\n\
-        aws s3 cp "${S3_SCRIPTS_PATH:-s3://mybucket/scripts}" /app/scripts/ --recursive\n\
-        nextflow run /app/scripts/main.nf -profile "${NF_PROFILE:-aws,Fargate}" -c /app/scripts/nextflow.config -bucket-dir "${NF_BUCKET_DIR:-s3://mybucket/demo/work}"\n\
-        ' > /app/run.sh \
-            && chmod +x /app/run.sh
-        
-        # Set the entrypoint to the shell script
-        ENTRYPOINT ["/app/run.sh"]    
-    ```
-    
-    </Details>
+## Nextflow Pipeline
 
-- submit job
 
-```
-aws batch submit-job \
-    --job-name nextflow-pipeline-job \
-    --job-queue <your-job-queue-name> \
-    --job-definition <your-job-definition-name> \
-    --container-overrides '{
-        "command": ["/app/run.sh"],
-        "environment": [
-            {"name": "S3_SCRIPTS_PATH", "value": "s3://mybucket/scripts"},
-            {"name": "NF_PROFILE", "value": "aws,Fargate"},
-            {"name": "NF_BUCKET_DIR", "value": "s3://mybucket/demo/work"}
-        ]
-    }'
-```
+ 
 
