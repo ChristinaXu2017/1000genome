@@ -28,6 +28,12 @@ The folder named terraform provides the template to set up cloud infrastructure.
     
 ## Nextflow Pipeline
 
-
+- update the parameter value within configuration file "./scripts/nextflow.config".
+  - "chunk_size": the maximum sample number with each group during "SPLIT_SAMPLE" task
+  - "rand_fraction" : the portion of variants to be randomly selected during "RAND_SELECT" task
+  - "maf_interval" select variants fallen in the specified interval range.  
+  - "container": the task job_definition refer to step 3 of AWS Cloud Infrastructure.   
  
-
+- Submit Nextflow to cloud
+  - update "submit.sh" following the step3 of  AWS Cloud Infrastructure. Here the Fargate cluster, docker image are already configured within job-queue and job-definition during terraform deployment. 
+  - run `bash ./submit.sh`: it copys the nextflow scripts including configuration file to s3; and then submit Nextflow head job to aws batch. 
